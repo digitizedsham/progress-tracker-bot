@@ -6,4 +6,16 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <ItemGroup>
+        <PackageReference Include="Dapper" Version="2.1.89" />
+        <PackageReference Include="Npgsql" Version="10.0.3" />
+        <PackageReference Include="Telegram.Bot" Version="22.8.1" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Folder Include="Common\" />
+      <Folder Include="Features\" />
+      <Folder Include="Infrastructure\" />
+    </ItemGroup>
+
 </Project>
