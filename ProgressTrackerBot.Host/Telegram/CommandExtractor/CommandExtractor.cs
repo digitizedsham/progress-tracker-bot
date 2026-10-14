@@ -1,4 +1,4 @@
-namespace ProgressTrackerBot.Host.Telegram;
+namespace ProgressTrackerBot.Host.Telegram.CommandExtractor;
 
 internal class CommandExtractor : ICommandExtractor
 {

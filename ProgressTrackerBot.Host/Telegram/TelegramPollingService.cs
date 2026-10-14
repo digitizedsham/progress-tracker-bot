@@ -33,5 +33,9 @@ internal sealed class TelegramPollingService(
                 AllowedUpdates = [UpdateType.Message, UpdateType.CallbackQuery]
             },
             cancellationToken: stoppingToken);
+        
+        logger.LogInformation(
+            "Завершение работы бота @{Username}.",
+            me.Username);
     }
 }
