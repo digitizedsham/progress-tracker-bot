@@ -3,9 +3,13 @@ using DbUp;
 
 const string connectionStringEnvironmentVariableName = "PT_MIGRATOR_CONNECTION_STRING";
 
-var connectionString =
-    args.FirstOrDefault()
-    ?? Environment.GetEnvironmentVariable(connectionStringEnvironmentVariableName);
+var connectionString = Environment.GetEnvironmentVariable(connectionStringEnvironmentVariableName);
+
+if (string.IsNullOrWhiteSpace(connectionString))
+{
+    throw new InvalidOperationException(
+        $"Переменная окружения \"{connectionStringEnvironmentVariableName}\" не задана.");
+}
 
 var upgrader = DeployChanges.To
     .PostgresqlDatabase(connectionString)
@@ -28,6 +32,6 @@ if (!result.Successful)
 }
 
 Console.ForegroundColor = ConsoleColor.Green;
-Console.WriteLine("Success!");
+Console.WriteLine("Миграции применены!");
 Console.ResetColor();
 return 0;

@@ -8,13 +8,14 @@ internal static class ServiceCollectionExtensions
 {
     public static void AddTelegram(this IServiceCollection services, IConfiguration configuration)
     {
-        var token = Environment.GetEnvironmentVariable(
-            "TELEGRAM_BOT_TOKEN");
+        const string telegramBotTokenEnvironmentVariableName = "TELEGRAM_BOT_TOKEN";
+
+        var token = Environment.GetEnvironmentVariable(telegramBotTokenEnvironmentVariableName);
 
         if (string.IsNullOrWhiteSpace(token))
         {
             throw new InvalidOperationException(
-                "TELEGRAM_BOT_TOKEN is not configured.");
+                $"Переменная окружения \"{telegramBotTokenEnvironmentVariableName}\" не задана.");
         }
 
         services.AddSingleton<ITelegramBotClient>(_ => new TelegramBotClient(token));

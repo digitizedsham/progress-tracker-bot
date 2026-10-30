@@ -43,6 +43,7 @@ CodeCoverage/
 .idea/
 *.DotSettings.user
 .env
+.DS_Store
 
 # MSBuild Binary and Structured Log
 *.binlog

@@ -1,18 +1,35 @@
-# Этап сборки
+# -------------------------
+# Build
+# -------------------------
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+
 WORKDIR /src
 
 COPY . .
-RUN dotnet restore ProgressTrackerBot.Host/ProgressTrackerBot.Host.csproj
+
+RUN dotnet restore ProgressTrackerBot.sln
+
+# Публикуем основной проект
 RUN dotnet publish ProgressTrackerBot.Host/ProgressTrackerBot.Host.csproj \
     -c Release \
-    -o /app/publish \
+    -o /app/publish/host \
     --no-restore
 
-# Этап запуска
+# Публикуем проект миграций
+RUN dotnet publish ProgressTrackerBot.Migrations/ProgressTrackerBot.Migrations.csproj \
+    -c Release \
+    -o /app/publish/migrations \
+    --no-restore
+
+
+# -------------------------
+# Runtime
+# -------------------------
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
+
 WORKDIR /app
 
-COPY --from=build /app/publish .
+COPY --from=build /app/publish/host ./host
+COPY --from=build /app/publish/migrations ./migrations
 
-ENTRYPOINT ["dotnet", "ProgressTrackerBot.Host.dll"]
+ENTRYPOINT ["dotnet"]
