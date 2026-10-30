@@ -1,9 +1,25 @@
 using ProgressTrackerBot.Host.Infrastructure;
+using Serilog;
 
-var builder = WebApplication.CreateBuilder(args);
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .CreateLogger();
 
-builder.Services.AddAllServices(builder.Configuration);
+try
+{
+    var builder = WebApplication.CreateBuilder(args);
 
-var app = builder.Build();
+    builder.Services.AddAllServices(builder.Configuration);
 
-app.Run();
+    var app = builder.Build();
+
+    app.Run();
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Работа приложения неожиданно прервалась.");
+}
+finally
+{
+    Log.CloseAndFlush();
+}
