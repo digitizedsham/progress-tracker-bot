@@ -4,11 +4,11 @@ internal class User
 {
     public long Id { get; set; }
     
-    public string? FirstName { get; set; }
-    
-    public string? LastName { get; set; }
+    public long TelegramId { get; set; }
     
     public string? Username { get; set; }
+    
+    public DateTimeOffset? CreatedAt { get; set; }
     
     public DateTimeOffset? PremiumUntil { get; set; }
 }

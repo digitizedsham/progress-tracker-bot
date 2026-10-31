@@ -1,4 +1,5 @@
 using ProgressTrackerBot.Host.Common;
+using ProgressTrackerBot.Host.Features.Start.Data;
 using ProgressTrackerBot.Host.Telegram;
 using Telegram.Bot;
 using Telegram.Bot.Types;
@@ -7,13 +8,15 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 namespace ProgressTrackerBot.Host.Features.Start.Handlers;
 
-internal class StartMessageCommandHandler(ITelegramBotClient bot) : IMessageCommandHandler
+internal class StartMessageCommandHandler(ITelegramBotClient bot, IRegisterUserRepository registerUserRepository, ILogger<StartMessageCommandHandler> logger) : IMessageCommandHandler
 {
     public string CommandName => CommandNameConstants.StartCommandName;
 
-    public Task Handle(Message message, CancellationToken cancellationToken)
+    public async Task Handle(Message message, CancellationToken cancellationToken)
     {
-        return bot.SendMessage(
+        await registerUserRepository.AddOrUpdate(message.Chat.Id, message.Chat.Username);
+        
+        await bot.SendMessage(
             chatId: message.Chat.Id,
             text: GetMessageText(),
             parseMode: ParseMode.Html,

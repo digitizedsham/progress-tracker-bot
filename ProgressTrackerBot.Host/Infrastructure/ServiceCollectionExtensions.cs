@@ -1,3 +1,4 @@
+using ProgressTrackerBot.Host.Common.Infrastructure;
 using ProgressTrackerBot.Host.Features.Infrastructure;
 using ProgressTrackerBot.Host.Telegram.Infrastructure;
 using Serilog;
@@ -11,5 +12,6 @@ internal static class ServiceCollectionExtensions
         services.AddSerilog();
         services.AddTelegram(configuration);
         services.AddFeatures(configuration);
+        services.AddCommon(configuration);
     }
 }

@@ -1,7 +1,8 @@
 CREATE TABLE IF NOT EXISTS public.users
 (
-    id bigint NOT NULL,
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    telegram_id BIGINT NOT NULL UNIQUE,
     username text NULL,
-    premium_until timestamp with time zone NULL,
-    CONSTRAINT pk_users PRIMARY KEY (id)
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    premium_until timestamp with time zone NULL
 );

@@ -15,9 +15,5 @@
         <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
         <PackageReference Include="Telegram.Bot" Version="22.8.1" />
     </ItemGroup>
-    
-    <ItemGroup>
-      <Folder Include="Common\" />
-    </ItemGroup>
 
 </Project>
