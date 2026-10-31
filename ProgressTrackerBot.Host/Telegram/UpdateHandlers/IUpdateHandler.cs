@@ -7,5 +7,5 @@ internal interface IUpdateHandler
 {
     public UpdateType UpdateType { get; }
 
-    public Task Handle(Update update, CancellationToken cancellationToken);
+    public Task<UpdateHandleResult?> Handle(Update update, CancellationToken cancellationToken);
 }

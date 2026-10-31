@@ -1,3 +1,5 @@
+using ProgressTrackerBot.Host.Common.LastCommandRepository;
+using ProgressTrackerBot.Host.Common.LastCommandRepository.Models;
 using ProgressTrackerBot.Host.Telegram.UpdateHandlers;
 using Telegram.Bot.Types;
 
@@ -21,7 +23,20 @@ internal sealed class UpdateDispatcher(
 
             if (updateHandler != null)
             {
-                await updateHandler.Handle(update, cancellationToken);
+                var lastCommand = await updateHandler.Handle(update, cancellationToken);
+                if (lastCommand == null)
+                {
+                    return;
+                }
+                
+                var lastCommandRepository = scope.ServiceProvider.GetRequiredService<ILastCommandRepository>();
+                await lastCommandRepository.AddOrUpdate(
+                    new AddLastCommandModel
+                    {
+                        UserId = lastCommand.UserId,
+                        Command = lastCommand.Command,
+                    });
+
                 return;
             }
 

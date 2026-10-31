@@ -1,6 +1,8 @@
+using ProgressTrackerBot.Host.Features.Start.Data.Models;
+
 namespace ProgressTrackerBot.Host.Features.Start.Data;
 
 internal interface IRegisterUserRepository
 {
-    public Task AddOrUpdate(long telegramId, string? username);
+    public Task AddOrUpdate(AddUserModel model);
 }

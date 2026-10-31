@@ -11,12 +11,12 @@ internal class MessageUpdateHandler(
 {
     public UpdateType UpdateType => UpdateType.Message;
 
-    public Task Handle(Update update, CancellationToken cancellationToken)
+    public async Task<UpdateHandleResult?> Handle(Update update, CancellationToken cancellationToken)
     {
         if (update.Message == null)
         {
             logger.LogError("Сообщение не может быть null.");
-            return Task.CompletedTask;
+            return null;
         }
 
         var command = commandExtractor.Extract(update.Message.Text);
@@ -25,9 +25,15 @@ internal class MessageUpdateHandler(
         if (messageCommandHandler == null)
         {
             logger.LogError("Не найден обработчик сообщения для команды '{Command}'.", command);
-            return Task.CompletedTask;
+            return null;
         }
                 
-        return messageCommandHandler.Handle(update.Message, cancellationToken);
+        await messageCommandHandler.Handle(update.Message, cancellationToken);
+
+        return new UpdateHandleResult
+        {
+            UserId = update.Message.Chat.Id,
+            Command =  command,
+        };
     }
 }

@@ -1,35 +1,29 @@
 using Dapper;
 using ProgressTrackerBot.Host.Common.DbConnectionFactory;
-using ProgressTrackerBot.Host.Entities.Users;
+using ProgressTrackerBot.Host.Features.Start.Data.Models;
 
 namespace ProgressTrackerBot.Host.Features.Start.Data;
 
 internal sealed class RegisterUserRepository(IDbConnectionFactory dbConnectionFactory) : IRegisterUserRepository
 {
-    public async Task AddOrUpdate(long telegramId, string? username)
+    public async Task AddOrUpdate(AddUserModel model)
     {
         const string sql = $@"
                            INSERT INTO users (
-                               telegram_id,
+                               id,
                                username
                            )
                            VALUES (
-                               @{nameof(User.TelegramId)},
-                               @{nameof(User.Username)}
+                               @{nameof(AddUserModel.Id)},
+                               @{nameof(AddUserModel.Username)}
                            )
-                           ON CONFLICT (telegram_id)
+                           ON CONFLICT (id)
                            DO UPDATE SET
                                username = EXCLUDED.username
                            ";
 
         await using var connection = dbConnectionFactory.Create();
 
-        await connection.ExecuteAsync(
-            sql,
-            new
-            {
-                TelegramId = telegramId,
-                Username = username
-            });
+        await connection.ExecuteAsync(sql, model);
     }
 }

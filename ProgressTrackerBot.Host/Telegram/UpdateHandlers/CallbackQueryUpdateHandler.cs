@@ -13,14 +13,14 @@ internal class CallbackQueryUpdateHandler(
 {
     public UpdateType UpdateType => UpdateType.CallbackQuery;
 
-    public async Task Handle(Update update, CancellationToken cancellationToken)
+    public async Task<UpdateHandleResult?> Handle(Update update, CancellationToken cancellationToken)
     {
         try
         {
             if (update.CallbackQuery == null)
             {
                 logger.LogError("CallbackQuery не может быть null.");
-                return;
+                return null;
             }
 
             var command = commandExtractor.Extract(update.CallbackQuery.Data);
@@ -30,10 +30,16 @@ internal class CallbackQueryUpdateHandler(
             if (callbackQueryCommandHandler == null)
             {
                 logger.LogError("Не найден обработчик CallbackQuery для команды '{Command}'.", command);
-                return;
+                return null;
             }
 
             await callbackQueryCommandHandler.Handle(update.CallbackQuery, cancellationToken);
+
+            return new UpdateHandleResult
+            {
+                UserId = update.CallbackQuery.From.Id,
+                Command =  command,
+            };
         }
         finally
         {
