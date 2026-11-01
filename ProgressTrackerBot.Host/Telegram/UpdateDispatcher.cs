@@ -40,7 +40,7 @@ internal sealed class UpdateDispatcher(
                 return;
             }
 
-            logger.LogError("Тип события '{UpdateType}' не поддерживается.", update.Type.ToString());
+            logger.LogError("Тип события \"{UpdateType}\" не поддерживается.", update.Type.ToString());
         }
         catch (OperationCanceledException)
         {

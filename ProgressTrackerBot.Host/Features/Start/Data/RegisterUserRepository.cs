@@ -9,7 +9,7 @@ internal sealed class RegisterUserRepository(IDbConnectionFactory dbConnectionFa
     public async Task AddOrUpdate(AddUserModel model)
     {
         const string sql = $@"
-                           INSERT INTO users (
+                           INSERT INTO public.users (
                                id,
                                username
                            )

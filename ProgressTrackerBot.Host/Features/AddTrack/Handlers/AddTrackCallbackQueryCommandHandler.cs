@@ -13,11 +13,11 @@ internal class AddTrackCallbackQueryCommandHandler(ITelegramBotClient bot) : ICa
 
     public async Task Handle(CallbackQuery callbackQuery, CancellationToken cancellationToken)
     {
-        await bot.SendMessage(
+        await bot.EditMessageText(
             chatId: callbackQuery.From.Id,
+            messageId: callbackQuery.Message!.MessageId,
             text: GetMessageText(),
             parseMode: ParseMode.Html,
-            disableNotification: true,
             replyMarkup: GetMenuKeyboard(),
             cancellationToken: cancellationToken);
     }

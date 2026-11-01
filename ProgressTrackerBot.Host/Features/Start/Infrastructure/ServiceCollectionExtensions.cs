@@ -9,6 +9,7 @@ internal static class ServiceCollectionExtensions
     public static void AddStartFeature(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<IRegisterUserRepository, RegisterUserRepository>();
+
         services.AddScoped<IMessageCommandHandler, StartMessageCommandHandler>();
     }
 }

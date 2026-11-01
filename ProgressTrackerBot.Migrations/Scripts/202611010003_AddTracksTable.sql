@@ -7,15 +7,18 @@ CREATE TABLE IF NOT EXISTS public.tracks
     name VARCHAR(50) NOT NULL,
     
     -- Битовая маска дней недели
-    weekdays_mask SMALLINT NOT NULL,
+    weekdays_mask SMALLINT NOT NULL DEFAULT 0,
     
     -- Часовой интервал уведомления: 0-23
-    reminder_hour SMALLINT NOT NULL,
+    reminder_hour SMALLINT NOT NULL DEFAULT 12,
+
+    -- Признак отправки оповещения со звуком или без
+    sound_on boolean NOT NULL DEFAULT FALSE,
     
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
 
     CONSTRAINT ck_tracks_weekdays_mask
-        CHECK (weekdays_mask BETWEEN 1 AND 127),
+        CHECK (weekdays_mask BETWEEN 0 AND 127),
 
     CONSTRAINT ck_tracks_reminder_hour
         CHECK (reminder_hour BETWEEN 0 AND 23)

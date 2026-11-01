@@ -29,7 +29,7 @@ internal class CallbackQueryUpdateHandler(
 
             if (callbackQueryCommandHandler == null)
             {
-                logger.LogError("Не найден обработчик CallbackQuery для команды '{Command}'.", command);
+                logger.LogError("Не найден обработчик CallbackQuery для команды \"{Command}\".", command);
                 return null;
             }
 
@@ -39,6 +39,7 @@ internal class CallbackQueryUpdateHandler(
             {
                 UserId = update.CallbackQuery.From.Id,
                 Command =  command,
+                Arguments = GetArguments(update.CallbackQuery.Data!, command)
             };
         }
         finally
@@ -50,5 +51,10 @@ internal class CallbackQueryUpdateHandler(
                     cancellationToken: cancellationToken);
             }
         }
+    }
+    
+    private static string GetArguments(string text, string command)
+    {
+        return text.TrimStart(command).Trim().ToString();
     }
 }

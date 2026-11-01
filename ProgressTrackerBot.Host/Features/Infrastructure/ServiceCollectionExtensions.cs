@@ -1,4 +1,5 @@
 using ProgressTrackerBot.Host.Features.AddTrack.Infrastructure;
+using ProgressTrackerBot.Host.Features.EditTrack.Infrastructure;
 using ProgressTrackerBot.Host.Features.Start.Infrastructure;
 
 namespace ProgressTrackerBot.Host.Features.Infrastructure;
@@ -9,5 +10,6 @@ internal static class ServiceCollectionExtensions
     {
         services.AddStartFeature(configuration);
         services.AddAddTrackFeature(configuration);
+        services.AddEditTrackFeature(configuration);
     }
 }

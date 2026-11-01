@@ -24,7 +24,7 @@ internal class MessageUpdateHandler(
 
         if (messageCommandHandler == null)
         {
-            logger.LogError("Не найден обработчик сообщения для команды '{Command}'.", command);
+            logger.LogError("Не найден обработчик сообщения для команды \"{Command}\".", command);
             return null;
         }
                 
@@ -34,6 +34,12 @@ internal class MessageUpdateHandler(
         {
             UserId = update.Message.Chat.Id,
             Command =  command,
+            Arguments = GetArguments(update.Message.Text!, command)
         };
+    }
+
+    private static string GetArguments(string text, string command)
+    {
+        return text.TrimStart(command).Trim().ToString();
     }
 }

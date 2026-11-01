@@ -1,5 +1,6 @@
 using ProgressTrackerBot.Host.Common.DbConnectionFactory.Infrastructure;
 using ProgressTrackerBot.Host.Common.LastCommandRepository.Infrastructure;
+using ProgressTrackerBot.Host.Common.TrackSettingsKeyboardFactory.Infrastructure;
 
 namespace ProgressTrackerBot.Host.Common.Infrastructure;
 
@@ -9,5 +10,6 @@ internal static class ServiceCollectionExtensions
     {
         services.AddDbConnectionFactory(configuration);
         services.AddLastCommandRepository(configuration);
+        services.AddTrackSettingsKeyboardFactory(configuration);
     }
 }

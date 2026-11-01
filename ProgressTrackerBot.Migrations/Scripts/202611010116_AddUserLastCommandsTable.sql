@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS public.user_last_commands
     command_name TEXT NOT NULL,
 
     -- Аргументы последней команды
-    arguments TEXT[] NOT NULL DEFAULT ARRAY[]::TEXT[],
+    arguments TEXT NOT NULL,
 
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
