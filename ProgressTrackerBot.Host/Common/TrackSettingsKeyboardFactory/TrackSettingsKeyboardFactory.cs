@@ -7,13 +7,13 @@ internal class TrackSettingsKeyboardFactory : ITrackSettingsKeyboardFactory
 {
     public InlineKeyboardMarkup Create(Track track)
     {
-        var mondayText = (track.WeekdaysMask & (1 << 0)) != 0 ? "Понедельник ✅" : "Понедельник";
-        var tuesdayText = (track.WeekdaysMask & (1 << 1)) != 0 ? "Вторник ✅" : "Вторник";
-        var wednesdayText = (track.WeekdaysMask & (1 << 2)) != 0 ? "Среда ✅" : "Среда";
-        var thursdayText = (track.WeekdaysMask & (1 << 3)) != 0 ? "Четверг ✅" : "Четверг";
-        var fridayText = (track.WeekdaysMask & (1 << 4)) != 0 ? "Пятница ✅" : "Пятница";
-        var saturdayText = (track.WeekdaysMask & (1 << 5)) != 0 ? "Суббота ✅" : "Суббота";
-        var sundayText = (track.WeekdaysMask & (1 << 6)) != 0 ? "Воскресенье ✅" : "Воскресенье";
+        var mondayText = (track.WeekdaysMask & (1 << 0)) != 0 ? "✅Пн" : "Пн";
+        var tuesdayText = (track.WeekdaysMask & (1 << 1)) != 0 ? "✅Вт" : "Вт";
+        var wednesdayText = (track.WeekdaysMask & (1 << 2)) != 0 ? "✅Ср" : "Ср";
+        var thursdayText = (track.WeekdaysMask & (1 << 3)) != 0 ? "✅Чт" : "Чт";
+        var fridayText = (track.WeekdaysMask & (1 << 4)) != 0 ? "✅Пт" : "Пт";
+        var saturdayText = (track.WeekdaysMask & (1 << 5)) != 0 ? "✅Сб" : "Сб";
+        var sundayText = (track.WeekdaysMask & (1 << 6)) != 0 ? "✅Вс" : "Вс";
 
         var soundOffText = !track.SoundOn ? "🔇Без звука ✅" : "🔇Без звука";
         var soundOnText = track.SoundOn ? "🔈Со звуком ✅" : "🔈Со звуком";
@@ -25,34 +25,22 @@ internal class TrackSettingsKeyboardFactory : ITrackSettingsKeyboardFactory
             [
                 InlineKeyboardButton.WithCallbackData(
                     text: mondayText,
-                    callbackData: GetCallbackDataToWeekDay(track, 0))
-            ],
-            [
+                    callbackData: GetCallbackDataToWeekDay(track, 0)),
                 InlineKeyboardButton.WithCallbackData(
                     text: tuesdayText,
-                    callbackData: GetCallbackDataToWeekDay(track, 1))
-            ],
-            [
+                    callbackData: GetCallbackDataToWeekDay(track, 1)),
                 InlineKeyboardButton.WithCallbackData(
                     text: wednesdayText,
-                    callbackData: GetCallbackDataToWeekDay(track, 2))
-            ],
-            [
+                    callbackData: GetCallbackDataToWeekDay(track, 2)),
                 InlineKeyboardButton.WithCallbackData(
                     text: thursdayText,
-                    callbackData: GetCallbackDataToWeekDay(track, 3))
-            ],
-            [
+                    callbackData: GetCallbackDataToWeekDay(track, 3)),
                 InlineKeyboardButton.WithCallbackData(
                     text: fridayText,
-                    callbackData: GetCallbackDataToWeekDay(track, 4))
-            ],
-            [
+                    callbackData: GetCallbackDataToWeekDay(track, 4)),
                 InlineKeyboardButton.WithCallbackData(
                     text: saturdayText,
-                    callbackData: GetCallbackDataToWeekDay(track, 5))
-            ],
-            [
+                    callbackData: GetCallbackDataToWeekDay(track, 5)),
                 InlineKeyboardButton.WithCallbackData(
                     text: sundayText,
                     callbackData: GetCallbackDataToWeekDay(track, 6))

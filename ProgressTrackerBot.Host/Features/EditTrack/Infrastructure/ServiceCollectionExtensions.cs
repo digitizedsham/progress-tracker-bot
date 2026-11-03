@@ -11,5 +11,6 @@ internal static class ServiceCollectionExtensions
         services.AddScoped<IEditTrackRepository, EditTrackRepository>();
 
         services.AddScoped<ICallbackQueryCommandHandler, EditTrackSettingsCallbackQueryCommandHandler>();
+        services.AddScoped<ICallbackQueryCommandHandler, EditTrackReminderHourCallbackQueryCommandHandler>();
     }
 }

@@ -29,4 +29,26 @@ internal class EditTrackRepository(IDbConnectionFactory dbConnectionFactory) : I
 
         return await connection.QuerySingleOrDefaultAsync<Track>(sql, model);
     }
+
+    public async Task<Track?> GetTrack(long trackId)
+    {
+        const string sql = $@"
+                           SELECT
+                               id AS {nameof(Track.Id)},
+                               user_id AS {nameof(Track.UserId)},
+                               name AS {nameof(Track.Name)},
+                               weekdays_mask AS {nameof(Track.WeekdaysMask)},
+                               reminder_hour AS {nameof(Track.ReminderHour)},
+                               sound_on AS {nameof(Track.SoundOn)}
+                           FROM public.tracks
+                           WHERE id = @TrackId;
+                           ";
+
+        await using var connection = dbConnectionFactory.Create();
+
+        return await connection.QuerySingleOrDefaultAsync<Track>(
+            sql,
+            new { TrackId = trackId }
+        );
+    }
 }

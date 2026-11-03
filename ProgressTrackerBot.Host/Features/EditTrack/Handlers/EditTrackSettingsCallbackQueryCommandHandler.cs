@@ -72,7 +72,7 @@ internal class EditTrackSettingsCallbackQueryCommandHandler(
     
     private static string TrackSettingsMessageText(string trackName)
     {
-        return $"Выберите в какие дни недели и в какое время присылать вам оповещения по цели \"{trackName}\":";
+        return $"Выберите в какие дни недели и в какое время присылать вам напоминание по цели \"{trackName}\":";
     }
     
     private static InlineKeyboardMarkup GetMenuKeyboard()
