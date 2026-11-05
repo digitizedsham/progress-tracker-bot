@@ -21,11 +21,11 @@ internal class EditTrackReminderHourCallbackQueryCommandHandler(
 
         if (arguments.Length != 1)
         {
-            await bot.SendMessage(
-                chatId: callbackQuery.Message!.Chat.Id,
+            await bot.EditMessageText(
+                chatId: callbackQuery.From.Id,
+                messageId: callbackQuery.Message!.MessageId,
                 text: IncorrectArgumentsCommandMessageText(),
                 parseMode: ParseMode.Html,
-                disableNotification: true,
                 replyMarkup: GetMenuKeyboard(),
                 cancellationToken: cancellationToken);
             
@@ -36,11 +36,11 @@ internal class EditTrackReminderHourCallbackQueryCommandHandler(
         var track = await editTrackRepository.GetTrack(trackId);
         if (track == null)
         {
-            await bot.SendMessage(
-                chatId: callbackQuery.Message!.Chat.Id,
+            await bot.EditMessageText(
+                chatId: callbackQuery.From.Id,
+                messageId: callbackQuery.Message!.MessageId,
                 text: TrackNotFoundCommandMessageText(),
                 parseMode: ParseMode.Html,
-                disableNotification: true,
                 replyMarkup: GetMenuKeyboard(),
                 cancellationToken: cancellationToken);
             

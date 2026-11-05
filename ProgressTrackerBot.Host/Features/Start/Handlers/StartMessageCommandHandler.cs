@@ -49,7 +49,7 @@ internal class StartMessageCommandHandler(
             [
                 InlineKeyboardButton.WithCallbackData(
                     text: CommandTitleConstants.TracksListCommandTitle,
-                    callbackData: CommandNameConstants.TracksListCommandName)
+                    callbackData: $"{CommandNameConstants.TracksListCommandName} {0}")
             ]
         ]);
     }

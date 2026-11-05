@@ -1,6 +1,6 @@
 namespace ProgressTrackerBot.Host.Features.AddTrack.Data.Models;
 
-public class AddTrackNameModel
+internal class AddTrackNameModel
 {
     public long UserId { get; set; }
 

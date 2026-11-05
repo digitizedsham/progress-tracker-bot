@@ -23,11 +23,11 @@ internal class EditTrackSettingsCallbackQueryCommandHandler(
 
         if (arguments.Length != 4)
         {
-            await bot.SendMessage(
-                chatId: callbackQuery.Message!.Chat.Id,
+            await bot.EditMessageText(
+                chatId: callbackQuery.From.Id,
+                messageId: callbackQuery.Message!.MessageId,
                 text: IncorrectArgumentsCommandMessageText(),
                 parseMode: ParseMode.Html,
-                disableNotification: true,
                 replyMarkup: GetMenuKeyboard(),
                 cancellationToken: cancellationToken);
             
@@ -44,11 +44,11 @@ internal class EditTrackSettingsCallbackQueryCommandHandler(
 
         if (track == null)
         {
-            await bot.SendMessage(
-                chatId: callbackQuery.Message!.Chat.Id,
+            await bot.EditMessageText(
+                chatId: callbackQuery.From.Id,
+                messageId: callbackQuery.Message!.MessageId,
                 text: IncorrectArgumentsCommandMessageText(),
                 parseMode: ParseMode.Html,
-                disableNotification: true,
                 replyMarkup: GetMenuKeyboard(),
                 cancellationToken: cancellationToken);
             

@@ -10,6 +10,8 @@ internal static class CommandNameConstants
     
     public const string TracksListCommandName = "/tracks_list";
     
+    public const string EditTrackCommandName = "/edit_track";
+    
     public const string EditTrackSettingsCommandName = "/edit_track_settings";
     
     public const string EditTrackReminderHourCommandName = "/edit_track_reminder_hour";

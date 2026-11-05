@@ -38,7 +38,7 @@ internal class MenuCallbackQueryCommandHandler(ITelegramBotClient bot) : ICallba
             [
                 InlineKeyboardButton.WithCallbackData(
                     text: CommandTitleConstants.TracksListCommandTitle,
-                    callbackData: CommandNameConstants.TracksListCommandName)
+                    callbackData: $"{CommandNameConstants.TracksListCommandName} {0}")
             ]
         ]);
     }
