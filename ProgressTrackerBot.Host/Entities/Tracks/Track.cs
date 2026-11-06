@@ -1,4 +1,4 @@
-namespace ProgressTrackerBot.Host.Entities.Track;
+namespace ProgressTrackerBot.Host.Entities.Tracks;
 
 internal class Track
 {

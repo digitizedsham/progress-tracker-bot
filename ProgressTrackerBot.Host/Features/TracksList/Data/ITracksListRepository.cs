@@ -1,4 +1,4 @@
-using ProgressTrackerBot.Host.Entities.Track;
+using ProgressTrackerBot.Host.Entities.Tracks;
 
 namespace ProgressTrackerBot.Host.Features.TracksList.Data;
 

@@ -1,6 +1,6 @@
 using Dapper;
 using ProgressTrackerBot.Host.Common.DbConnectionFactory;
-using ProgressTrackerBot.Host.Entities.Track;
+using ProgressTrackerBot.Host.Entities.Tracks;
 using ProgressTrackerBot.Host.Features.AddTrack.Data.Models;
 
 namespace ProgressTrackerBot.Host.Features.AddTrack.Data;

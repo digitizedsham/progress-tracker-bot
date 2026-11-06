@@ -1,4 +1,4 @@
-namespace ProgressTrackerBot.Host.Entities.LastCommand;
+namespace ProgressTrackerBot.Host.Entities.LastCommands;
 
 internal class LastCommand
 {

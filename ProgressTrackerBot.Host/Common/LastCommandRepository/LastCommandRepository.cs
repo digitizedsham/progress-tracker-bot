@@ -1,7 +1,7 @@
 using Dapper;
 using ProgressTrackerBot.Host.Common.DbConnectionFactory;
 using ProgressTrackerBot.Host.Common.LastCommandRepository.Models;
-using ProgressTrackerBot.Host.Entities.LastCommand;
+using ProgressTrackerBot.Host.Entities.LastCommands;
 
 namespace ProgressTrackerBot.Host.Common.LastCommandRepository;
 

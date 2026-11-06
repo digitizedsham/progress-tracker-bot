@@ -1,4 +1,4 @@
-using ProgressTrackerBot.Host.Telegram.CommandExtractor;
+using ProgressTrackerBot.Host.Telegram.CommandExtractor.Infrastructure;
 using ProgressTrackerBot.Host.Telegram.UpdateHandlers;
 using Telegram.Bot;
 
@@ -21,10 +21,10 @@ internal static class ServiceCollectionExtensions
         services.AddSingleton<ITelegramBotClient>(_ => new TelegramBotClient(token));
         services.AddHostedService<TelegramPollingService>();
         services.AddSingleton<UpdateDispatcher>();
-        services.AddSingleton<ICommandExtractor, CommandExtractor.CommandExtractor>();
         
         services.AddScoped<IUpdateHandler, MessageUpdateHandler>();
         services.AddScoped<IUpdateHandler, CallbackQueryUpdateHandler>();
         
+        services.AddCommandExtractor(configuration);
     }
 }

@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS public.tracks
     
     user_id BIGINT NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
     
-    name VARCHAR(50) NOT NULL,
+    name VARCHAR(150) NOT NULL,
     
     -- Битовая маска дней недели
     weekdays_mask SMALLINT NOT NULL DEFAULT 0,
@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS public.tracks
     reminder_hour SMALLINT NOT NULL DEFAULT 12,
 
     -- Признак отправки оповещения со звуком или без
-    sound_on boolean NOT NULL DEFAULT FALSE,
+    sound_on BOOLEAN NOT NULL DEFAULT FALSE,
     
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
 

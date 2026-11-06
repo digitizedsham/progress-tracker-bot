@@ -8,5 +8,6 @@ internal static class ServiceCollectionExtensions
     public static void AddMenuFeature(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<ICallbackQueryCommandHandler, MenuCallbackQueryCommandHandler>();
+        services.AddScoped<ICallbackQueryCommandHandler, NewMessageMenuCallbackQueryCommandHandler>();
     }
 }

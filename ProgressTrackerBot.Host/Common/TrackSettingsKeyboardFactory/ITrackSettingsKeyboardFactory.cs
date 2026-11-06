@@ -1,4 +1,4 @@
-using ProgressTrackerBot.Host.Entities.Track;
+using ProgressTrackerBot.Host.Entities.Tracks;
 using Telegram.Bot.Types.ReplyMarkups;
 
 namespace ProgressTrackerBot.Host.Common.TrackSettingsKeyboardFactory;

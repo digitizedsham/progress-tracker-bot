@@ -1,5 +1,5 @@
 using ProgressTrackerBot.Host.Common;
-using ProgressTrackerBot.Host.Entities.Track;
+using ProgressTrackerBot.Host.Entities.Tracks;
 using ProgressTrackerBot.Host.Features.EditTrack.Data;
 using ProgressTrackerBot.Host.Telegram;
 using Telegram.Bot;
